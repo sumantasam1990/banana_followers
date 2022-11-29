@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\UserController::class, 'dashboard']);
 
 Route::get('add/funds', [\App\Http\Controllers\PaymentController::class, 'addFunds'])->name('add.funds');
-Route::post('add/funds/payment', [\App\Http\Controllers\PaymentController::class, 'payment'])->name('add.funds.payment');
+Route::post('add/funds/payment', [\App\Http\Controllers\PaymentController::class, 'payment'])->name('add.fund.payment');

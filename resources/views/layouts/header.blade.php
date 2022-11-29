@@ -30,15 +30,17 @@
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!-- Vendors styles-->
-    <link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
-    <link rel="stylesheet" href="css/vendors/simplebar.css">
+    <link rel="stylesheet" href="{{asset('vendors/simplebar/css/simplebar.css')}}">
+    <link rel="stylesheet" href="{{asset('css/vendors/simplebar.css')}}">
     <!-- Main styles for this application-->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
     <!-- We use those styles to show code examples, you should remove them in your application.-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
-    <link href="css/examples.css" rel="stylesheet">
+    <link href="{{asset('css/examples.css')}}" rel="stylesheet">
 
-    <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+    <link href="{{asset('vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet">
+
+    @vite(['resources/js/app.js'])
 </head>
 <body>
 
