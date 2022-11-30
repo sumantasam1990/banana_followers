@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Interfaces\PaymentRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use Stripe\Exception\CardException;
 use Stripe\StripeClient;
 use Exception;
@@ -9,9 +11,11 @@ use Exception;
 class StripePayment
 {
     private $stripe;
-    public function __construct()
+    private PaymentRepositoryInterface $paymentRepository;
+    public function __construct(PaymentRepositoryInterface $paymentRepository)
     {
         $this->stripe = new StripeClient(config('stripe.api_keys.secret_key'));
+        $this->paymentRepository = $paymentRepository;
     }
 
     public function createToken($cardData)
@@ -44,6 +48,12 @@ class StripePayment
                 'source' => $tokenId,
                 'description' => 'Banana followers - Add funds.'
             ]);
+            $prevBalance = $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id);
+            $dataArray = [
+                'user_id' => Auth::user()->id,
+                'balance' => $prevBalance->balance + $amount/100,
+            ];
+            $this->paymentRepository->createPayment($dataArray);
         } catch (Exception $e) {
             $charge['error'] = $e->getMessage();
         }
