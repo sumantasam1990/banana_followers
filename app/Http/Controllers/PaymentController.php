@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\PaymentRepositoryInterface;
 use App\Services\StripePayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
 {
+    private PaymentRepositoryInterface $paymentRepository;
+
+    public function __construct(PaymentRepositoryInterface $paymentRepository)
+    {
+        $this->paymentRepository = $paymentRepository;
+    }
     public function addFunds()
     {
-        return view('payments.add-fund');
+        return view('payments.add-fund', ['balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
     }
 
     public function payment(StripePayment $stripePayment, Request $request)

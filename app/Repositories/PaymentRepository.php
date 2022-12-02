@@ -38,13 +38,15 @@ class PaymentRepository implements PaymentRepositoryInterface
         return $fund->id;
     }
 
-    public function updatePayment($paymentId, array $newDetails)
+    public function updatePayment($userId, array $newDetails)
     {
-        return Fund::whereId($paymentId)->update($newDetails);
+        return Fund::where('user_id', $userId)->update($newDetails);
     }
 
     public function getFulfilledPayments()
     {
         return Fund::where('is_fulfilled', true);
     }
+
+
 }

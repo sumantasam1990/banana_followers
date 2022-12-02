@@ -14,7 +14,7 @@
         <li class="nav-item"><a class="nav-link" href="{{route('add.funds')}}">
                 <svg class="nav-icon">
                     <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-dollar')}}"></use>
-                </svg> Add funds <span class="badge badge-sm bg-info ms-auto">$0.00</span></a></li>
+                </svg> Add funds <span class="badge badge-sm bg-info ms-auto">${{number_format($balance->balance, 2)}}</span></a></li>
         <li class="nav-item"><a class="nav-link" href="typography.html">
                 <svg class="nav-icon">
                     <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-plus')}}"></use>

@@ -9,6 +9,6 @@ interface PaymentRepositoryInterface
     public function getPaymentBalanceByUserId($userId);
     public function deletePayment($paymentId);
     public function createPayment(array $paymentDetails);
-    public function updatePayment($paymentId, array $newDetails);
+    public function updatePayment($userId, array $newDetails);
     public function getFulfilledPayments();
 }

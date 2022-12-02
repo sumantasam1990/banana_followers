@@ -44,4 +44,4 @@
 </head>
 <body>
 
-@include('layouts.sidebar')
+@include('layouts.sidebar', ['balance' => $balance])

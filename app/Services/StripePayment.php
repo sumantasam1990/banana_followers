@@ -53,7 +53,7 @@ class StripePayment
                 'user_id' => Auth::user()->id,
                 'balance' => $prevBalance->balance + $amount/100,
             ];
-            $this->paymentRepository->createPayment($dataArray);
+            $this->paymentRepository->updatePayment(Auth::user()->id, $dataArray);
         } catch (Exception $e) {
             $charge['error'] = $e->getMessage();
         }
