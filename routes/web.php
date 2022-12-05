@@ -9,6 +9,7 @@ Route::get('/auth/login', [\App\Http\Controllers\AuthController::class, 'login']
 Route::post('/auth/login/post', [\App\Http\Controllers\AuthController::class, 'loginPost'])->name('auth.login.post');
 Route::get('/auth/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout');
 
+
 // General routes
 Route::middleware(['auth'])->prefix('u')->group(function () {
     Route::get('/', [\App\Http\Controllers\UserController::class, 'dashboard']);
