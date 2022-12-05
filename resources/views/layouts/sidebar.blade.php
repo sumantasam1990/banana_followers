@@ -6,16 +6,16 @@
         </svg>
     </div>
     <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-        <li class="nav-item"><a class="nav-link" href="index.html">
+        <li class="nav-item"><a class="nav-link" href="{{route('services')}}">
                 <svg class="nav-icon">
                     <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer')}}"></use>
-                </svg> Dashboard</a></li>
+                </svg> Services</a></li>
 
         <li class="nav-item"><a class="nav-link" href="{{route('add.funds')}}">
                 <svg class="nav-icon">
                     <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-dollar')}}"></use>
                 </svg> Add funds <span class="badge badge-sm bg-info ms-auto">${{number_format($balance->balance, 2)}}</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="typography.html">
+        <li class="nav-item"><a class="nav-link" href="{{route('new.order')}}">
                 <svg class="nav-icon">
                     <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-plus')}}"></use>
                 </svg> New order</a></li>
