@@ -16,19 +16,30 @@ class ServiceController extends Controller
         $this->paymentRepository = $paymentRepository;
     }
 
-    public function index()
+    public function index(string $search = '')
     {
         $response = Http::post(env('SMSFOLLOWES_API_URL'), [
             'key' => env('SMSFOLLOWES_API'),
             'action' => 'services',
         ]);
 
-        $search = 'facebook';
         $collection = $response->collect()->filter(function ($item) use ($search) {
             return false !== stripos($item['category'], $search);
         });
 
-        //$response_data = $response->collect()->where('category', 'like', '%Facebook%');
+        return view('services.index', ['services' => $collection, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
+    }
+
+    public function search(Request $request)
+    {
+        $response = Http::post(env('SMSFOLLOWES_API_URL'), [
+            'key' => env('SMSFOLLOWES_API'),
+            'action' => 'services',
+        ]);
+
+        $collection = $response->collect()->filter(function ($item) use ($request) {
+            return false !== stripos($item['category'], $request->_s);
+        });
 
         return view('services.index', ['services' => $collection, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
     }

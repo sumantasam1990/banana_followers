@@ -96,6 +96,10 @@
                                 <button class="btn btn-primary" type="submit">Create Account</button>
                             </div>
 
+                            <div class="d-grid gap-2 mx-auto col-8 mt-4">
+                                <a href="{{route('auth.login')}}" class="btn btn-light fw-bold" type="submit">Already have an account? Log In</a>
+                            </div>
+
                         </div>
                     </form>
 

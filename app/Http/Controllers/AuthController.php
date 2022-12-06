@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fund;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,13 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password_confirmation);
         $user->save();
+
+        // also add fund
+
+        $fund = new Fund;
+        $fund->user_id = $user->id;
+        $fund->balance = 0.00;
+        $fund->save();
 
         return redirect(route('auth.login'));
     }

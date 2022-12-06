@@ -33,7 +33,7 @@
                                                 <select class="form-control" name="service" onchange="getServiceCost(this.value);">
                                                     <option selected>--Choose a service--</option>
                                                     @foreach($data as $d)
-                                                        <option value="{{$d['service']}}-{{$d['rate']}}">{{$d['type']}} - {{$d['name']}}</option>
+                                                        <option {{$d['service'] == $id ? 'selected' : ''}} value="{{$d['service']}}-{{$d['rate']}}">{{$d['type']}} - {{$d['name']}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -50,10 +50,8 @@
 
                                             <div class="form-group">
                                                 <label for="username">Charge</label>
-                                                <input type="text" disabled class="form-control" id="rate_charge">
+                                                <input value="{{$idRate ? '$' . $idRate : ''}}" type="text" disabled class="form-control" id="rate_charge">
                                             </div>
-
-
 
                                             <div class="d-grid gap-2 mx-auto col-12">
                                                 <button class="subscribe btn btn-primary btn-lg" type="submit"> Place Order </button>
@@ -76,6 +74,6 @@
     function getServiceCost(cost) {
         fetch('/u/service/cost/' + cost)
             .then((response) => response.json())
-            .then((data) => document.getElementById('rate_charge').value = data.rate + ' each quantity');
+            .then((data) => document.getElementById('rate_charge').value = '$' + data.rate);
     }
 </script>

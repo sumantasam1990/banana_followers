@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('funds', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->ulid('user_id');
-            $table->double('balance')->index();
+            $table->double('order_API_id')->index();
+            $table->string('url');
+            $table->integer('quantity');
+            $table->double('cost');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('funds');
+        //
     }
 };

@@ -42,6 +42,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
+                <div class="text-center">
+{{--                    <img src="{{asset('images/logo.png')}}" class="img-fluid" width="180" alt="banana followers">--}}
+                </div>
                 <div class="card mb-4 mx-4">
                     <form action="{{route('auth.login.post')}}" method="post">
                         @csrf
@@ -74,6 +77,10 @@
 
                             <div class="d-grid gap-2 mx-auto col-5">
                                 <button class="btn btn-primary" type="submit">Sign In</button>
+                            </div>
+
+                            <div class="d-grid gap-2 mx-auto col-8 mt-4">
+                                <a href="{{route('auth.register')}}" class="btn btn-light fw-bold" type="submit">Create an account</a>
                             </div>
 
                         </div>

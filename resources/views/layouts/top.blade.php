@@ -29,20 +29,24 @@
         </ul>
         <ul class="header-nav ms-3">
             <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <div class="avatar avatar-md"><img class="avatar-img" src="{{asset('assets/img/avatars/8.jpg')}}" alt="user@email.com"></div>
+                    <div class="avatar avatar-md"><img class="avatar-img" src="{{asset('images/user.png')}}" alt="{{auth()->user()->email}}"></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
                     <div class="dropdown-header bg-light py-2">
                         <div class="fw-semibold">Account</div>
                     </div>
 
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="{{route('add.funds')}}">
                         <svg class="icon me-2">
-                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-settings')}}"></use>
-                        </svg> Settings</a><a class="dropdown-item" href="#">
+                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-wallet')}}"></use>
+                        </svg> Add fund</a><a class="dropdown-item" href="{{route('my.orders')}}">
                         <svg class="icon me-2">
-                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-credit-card')}}"></use>
-                        </svg> Payments</a>
+                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-basket')}}"></use>
+                        </svg> My orders</a>
+                    <a class="dropdown-item" href="{{route('services')}}">
+                        <svg class="icon me-2">
+                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-gem')}}"></use>
+                        </svg> Services</a>
                     <div class="dropdown-divider"></div><a class="dropdown-item" href="{{route('auth.logout')}}">
                         <svg class="icon me-2">
                             <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-account-logout')}}"></use>
