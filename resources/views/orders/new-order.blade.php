@@ -33,7 +33,7 @@
                                                 <select class="form-control" name="service" onchange="getServiceCost(this.value);">
                                                     <option selected>--Choose a service--</option>
                                                     @foreach($data as $d)
-                                                        <option {{$d['service'] == $id ? 'selected' : ''}} value="{{$d['service']}}-{{$d['rate']}}">{{$d['type']}} - {{$d['name']}}</option>
+                                                        <option {{$d['_id'] == $id ? 'selected' : ''}} value="{{$d['_id']}}-{{$d['cost']}}">{{$d['type']}} - {{$d['title']}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -61,6 +61,9 @@
                                 </div>
                             </div>
                         </article>
+                    </aside>
+                    <aside class="col-md-6">
+
                     </aside>
                 </div>
             </main>

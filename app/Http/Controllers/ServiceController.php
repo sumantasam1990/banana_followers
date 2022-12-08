@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Interfaces\PaymentRepositoryInterface;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -16,31 +17,21 @@ class ServiceController extends Controller
         $this->paymentRepository = $paymentRepository;
     }
 
-    public function index(string $search = '')
+    public function index(string $search = '', string $sub = '')
     {
-        $response = Http::post(env('SMSFOLLOWES_API_URL'), [
-            'key' => env('SMSFOLLOWES_API'),
-            'action' => 'services',
-        ]);
+        $response = Service::where('category', 'like', '%' . $search . '%')->where('title', 'like', '%' . $sub . '%')->paginate(50);
 
-        $collection = $response->collect()->filter(function ($item) use ($search) {
-            return false !== stripos($item['category'], $search);
-        });
+//        $collection = $response->collect()->filter(function ($item) use ($search) {
+//            return false !== stripos($item['title'], $search);
+//        });
 
-        return view('services.index', ['services' => $collection, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
+        return view('services.index', ['services' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
     }
 
     public function search(Request $request)
     {
-        $response = Http::post(env('SMSFOLLOWES_API_URL'), [
-            'key' => env('SMSFOLLOWES_API'),
-            'action' => 'services',
-        ]);
+        $response = Service::where('title', 'like', '%' . $request->_s . '%')->paginate(50);
 
-        $collection = $response->collect()->filter(function ($item) use ($request) {
-            return false !== stripos($item['category'], $request->_s);
-        });
-
-        return view('services.index', ['services' => $collection, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
+        return view('services.index', ['services' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id), 'request' => $request]);
     }
 }

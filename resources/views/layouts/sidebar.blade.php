@@ -23,10 +23,10 @@
                 <svg class="nav-icon">
                     <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-basket')}}"></use>
                 </svg> My orders</a></li>
-        <li class="nav-item"><a class="nav-link" href="typography.html">
-                <svg class="nav-icon">
-                    <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-gift')}}"></use>
-                </svg> Gifts</a></li>
+{{--        <li class="nav-item"><a class="nav-link" href="typography.html">--}}
+{{--                <svg class="nav-icon">--}}
+{{--                    <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-gift')}}"></use>--}}
+{{--                </svg> Gifts</a></li>--}}
 
         </li>
 

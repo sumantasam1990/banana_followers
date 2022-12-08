@@ -25,7 +25,7 @@
                                             @csrf
                                             <div class="row mb-3 mt-3">
                                                 <div class="col-10">
-                                                    <input type="search" required class="form-control" placeholder="Search with service name..." name="_s" value="{{old('_s')}}">
+                                                    <input type="search" required class="form-control" placeholder="Search with service name..." name="_s" value="{{$request->_s ?? ''}}">
                                                 </div>
                                                 <div class="col-2">
                                                     <div class="d-grid gap-2 mx-auto col-12">
@@ -35,9 +35,34 @@
                                             </div>
                                         </form>
 
+                                        <a class="btn btn-dark" href="{{route('services')}}"><i class="fa-sharp fa-solid fa-star"></i> All services</a>
 
-                                        <a class="btn btn-dark" href="{{route('services', ['instagram'])}}"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                                        <a class="btn btn-dark" href="{{route('services', ['facebook'])}}"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                                        <div class="btn-group">
+                                            <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-brands fa-instagram"></i> Instagram
+                                            </a>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="{{route('services', ['instagram', 'likes'])}}">Likes</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['instagram', 'follow'])}}">Followers</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['instagram', 'comment'])}}">Comments</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="btn-group">
+                                            <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-brands fa-facebook"></i> Facebook
+                                            </a>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="{{route('services', ['facebook', 'like'])}}">Likes</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['facebook', 'follower'])}}">Followers</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['facebook', 'comment'])}}">Comments</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['facebook', 'reaction'])}}">Reactions</a></li>
+                                            </ul>
+                                        </div>
+
+
                                         <a class="btn btn-dark" href="{{route('services', ['twitter'])}}"><i class="fa-brands fa-twitter"></i> Twitter</a>
                                         <a class="btn btn-dark" href="{{route('services', ['tiktok'])}}"><i class="fa-brands fa-tiktok"></i> Tiktok</a>
                                         <a class="btn btn-dark" href="{{route('services', ['youtube'])}}"><i class="fa-brands fa-youtube"></i> YouTube</a>
@@ -45,8 +70,11 @@
                                         <a class="btn btn-dark" href="{{route('services', ['telegram'])}}"><i class="fa-brands fa-telegram"></i> Telegram</a>
                                         <a class="btn btn-dark" href="{{route('services', ['spotify'])}}"><i class="fa-brands fa-spotify"></i> Spotify</a>
 
+                                        <div class="mt-4">
+                                            {{$services->links()}}
+                                        </div>
 
-                                        <table class="table table-bordered table-striped mt-4">
+                                        <table class="table table-bordered table-striped mt-2">
                                             <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -60,16 +88,20 @@
                                             <tbody>
                                             @foreach($services as $service)
                                                 <tr>
-                                                    <td>{{$service['service']}}</td>
-                                                    <td>{{$service['name']}}</td>
-                                                    <td>{{$service['rate'] * 3.5}}</td>
-                                                    <td><span class="badge bg-danger">{{$service['min']}}</span></td>
-                                                    <td><span class="badge bg-success">{{$service['max']}}</span></td>
-                                                    <td><a class="btn btn-primary btn-sm" href="{{route('new.order', [$service['service']])}}"><i class="fa-solid fa-fire"></i> New Order</a> </td>
+                                                    <td>{{$service['_id']}}</td>
+                                                    <td>{{$service['title']}}</td>
+                                                    <td>{{$service['cost'] * 3.5}}</td>
+                                                    <td><span class="badge bg-danger">{{$service['min_order']}}</span></td>
+                                                    <td><span class="badge bg-success">{{$service['max_order']}}</span></td>
+                                                    <td><a class="btn btn-primary btn-sm" href="{{route('new.order', [$service['_id']])}}"><i class="fa-solid fa-fire"></i> New Order</a> </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
+
+                                        <div>
+                                            {{$services->links()}}
+                                        </div>
 
                                     </div>
                                 </div>
