@@ -40,18 +40,7 @@
                                                 <label for="username">Full name (on the card)</label>
                                                 <input type="text" class="form-control" name="fullName" placeholder="Full Name">
                                             </div>
-{{--                                            <div class="form-group">--}}
-{{--                                                <label for="cardNumber">Card number</label>--}}
-{{--                                                <div class="input-group">--}}
-{{--                                                    <input type="text" class="form-control" name="cardNumber" placeholder="Card Number">--}}
-{{--                                                    <div class="input-group-append">--}}
-{{--                                            <span class="input-group-text">--}}
-{{--                                            <i class="fab fa-cc-visa fa-lg pr-1"></i>--}}
-{{--                                            <i class="fab fa-cc-amex fa-lg pr-1"></i>--}}
-{{--                                            <i class="fab fa-cc-mastercard fa-lg"></i>--}}
-{{--                                            </span>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
+
                                             <div class="form-group">
                                                 <label for="cardNumber">Card number</label>
                                                 <div class="input-group mb-3">

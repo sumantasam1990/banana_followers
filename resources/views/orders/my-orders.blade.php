@@ -21,6 +21,7 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade show active" id="nav-tab-card">
 
+                                        @if($data->count() > 0)
                                         <table class="table table-bordered table-striped mt-4">
                                             <thead>
                                             <tr>
@@ -49,6 +50,9 @@
                                             @endforeach
                                             </tbody>
                                         </table>
+                                        @else
+                                            <p class="fw-bold fs-6">No data.</p>
+                                        @endif
 
                                         <div>
                                             {{ $data->links() }}
