@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 class Fund extends Model
 {
     use HasFactory, HasUlids;
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
