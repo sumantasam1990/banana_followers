@@ -26,8 +26,14 @@ Route::middleware(['auth'])->prefix('u')->group(function () {
     Route::post('services/search', [\App\Http\Controllers\ServiceController::class, 'search'])->name('services.search');
     Route::get('my/orders', [\App\Http\Controllers\OrderController::class, 'yourOrders'])->name('my.orders');
     Route::get('order/status/{id}', [\App\Http\Controllers\OrderController::class, 'orderStatus'])->name('order.status');
+    Route::get('support/ticket/add', [\App\Http\Controllers\TicketController::class, 'index'])->name('tickets');
+    Route::post('ticket/post', [\App\Http\Controllers\TicketController::class, 'addTicket'])->name('add.ticket.post');
+    Route::get('view/ticket/{id}', [\App\Http\Controllers\TicketController::class, 'viewTicket'])->name('view.ticket');
+    Route::post('ticket/reply', [\App\Http\Controllers\TicketController::class, 'replyTicket'])->name('add.ticket.reply');
 });
 
+
+// Admin routes
 Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::get('subscribers', function () {
