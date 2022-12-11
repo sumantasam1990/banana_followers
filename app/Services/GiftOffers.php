@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class GiftOffers
 {
-    public function offerApplicable(float $cost): float
+    public static function offerApplicable(float $cost): float
     {
         $order_count = Order::where('user_id', Auth::user()->id)->get();
         $total_spent = $order_count->sum('cost');

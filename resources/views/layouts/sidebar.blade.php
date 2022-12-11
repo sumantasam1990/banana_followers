@@ -53,14 +53,14 @@
                     <svg class="nav-icon">
                         <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-basket')}}"></use>
                     </svg> My orders</a></li>
-            <li class="nav-item"><a class="nav-link" href="">
+            <li class="nav-item"><a class="nav-link" href="{{route('new.ticket')}}">
                     <svg class="nav-icon">
-                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-money')}}"></use>
-                    </svg> Transactions</a></li>
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-plus')}}"></use>
+                    </svg> New Ticket</a></li>
             <li class="nav-item"><a class="nav-link" href="{{route('tickets')}}">
                     <svg class="nav-icon">
                         <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-bullhorn')}}"></use>
-                    </svg> Tickets</a></li>
+                    </svg> My Tickets</a></li>
 
             </li>
 

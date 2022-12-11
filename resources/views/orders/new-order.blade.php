@@ -53,8 +53,9 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="username">Charge</label>
-                                                <input value="{{$idRate ? '$' . $idRate : ''}}" type="text" disabled class="form-control" id="rate_charge">
+                                                <label for="username">Charge*</label>
+                                                <p class="mb-1 fw-bold text-primary fs-5">{{$idRate ? '$' . number_format($idRate, 2) : ''}}</p>
+                                                <del class="fw-bold text-danger"> ${{number_format($prevRate, 2)}}</del>
                                             </div>
 
                                             <div class="d-grid gap-2 mx-auto col-12">

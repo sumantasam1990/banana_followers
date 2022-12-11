@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\PaymentRepositoryInterface;
 use App\Models\Service;
+use App\Services\GiftOffers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -17,13 +18,9 @@ class ServiceController extends Controller
         $this->paymentRepository = $paymentRepository;
     }
 
-    public function index(string $search = '', string $sub = '')
+    public function index(string $search = '', string $sub = '', GiftOffers $giftOffers)
     {
         $response = Service::where('category', 'like', '%' . $search . '%')->where('title', 'like', '%' . $sub . '%')->paginate(50);
-
-//        $collection = $response->collect()->filter(function ($item) use ($search) {
-//            return false !== stripos($item['title'], $search);
-//        });
 
         return view('services.index', ['services' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
     }

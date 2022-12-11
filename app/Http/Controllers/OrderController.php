@@ -26,12 +26,12 @@ class OrderController extends Controller
 
         if ($id > 0) {
             $idRate = $response->collect()->firstWhere('_id', '=', $id);
-            $idRate = $idRate['cost'] * 3.5;
+            $prevRate = $idRate['cost'] * 3.5;
             //checking Gift offers
-            $idRate = $giftOffers->offerApplicable($idRate);
+            $idRate = $giftOffers->offerApplicable($prevRate);
         }
 
-        return view('orders.new-order', ['id' => $id, 'idRate' => $idRate ?? '', 'data' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
+        return view('orders.new-order', ['id' => $id, 'idRate' => $idRate ?? '', 'prevRate' => $prevRate ?? '', 'data' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
     }
 
     public function newOrderPost(Request $request, GiftOffers $giftOffers)
@@ -98,7 +98,7 @@ class OrderController extends Controller
         $rate = explode('-', $rate);
         //checking Gift offers
         $rate = $giftOffers->offerApplicable($rate[1]);
-        return response()->json(['rate' => $rate*3.5]);
+        return response()->json(['rate' => number_format($rate*3.5, 2)]);
     }
 
     public function yourOrders()

@@ -19,9 +19,15 @@ class TicketController extends Controller
 
     public function index()
     {
+
+        return view('tickets.index', ['balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
+    }
+
+    public function display()
+    {
         $data = Ticket::where('user_id', Auth::user()->id)->paginate(10);
 
-        return view('tickets.index', ['data' => $data, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
+        return view('tickets.display', ['data' => $data, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
     }
 
     public function addTicket(Request $request)

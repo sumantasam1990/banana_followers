@@ -92,7 +92,10 @@
                                                 <tr>
                                                     <td>{{$service['_id']}}</td>
                                                     <td>{{$service['title']}}</td>
-                                                    <td>{{$service['cost'] * 3.5}}</td>
+                                                    <td>
+                                                        <del class="text-danger fw-bold">${{number_format($service['cost'] * 3.5, 2)}}</del>
+                                                        <span class="fw-bold text-black fs-5">${{number_format(\App\Services\GiftOffers::offerApplicable($service['cost']) * 3.5, 2)}}</span>
+                                                    </td>
                                                     <td><span class="badge bg-danger">{{$service['min_order']}}</span></td>
                                                     <td><span class="badge bg-success">{{$service['max_order']}}</span></td>
                                                     @if(auth()->user()->user_type === 'user')

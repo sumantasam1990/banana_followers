@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-6">
                     <h2 class="fs-2 fw-bold">Add Fund</h2>
-                    <p>
+                    <p class="fw-bold text-info">
                         15% welcome discount on your first 3 orders.
                         Every 20€ spent, 10% discount on the next 3 orders.
                     </p>
