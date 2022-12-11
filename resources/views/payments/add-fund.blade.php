@@ -8,6 +8,10 @@
             <div class="row">
                 <div class="col-6">
                     <h2 class="fs-2 fw-bold">Add Fund</h2>
+                    <p>
+                        15% welcome discount on your first 3 orders.
+                        Every 20€ spent, 10% discount on the next 3 orders.
+                    </p>
                     <hr />
                 </div>
             </div>
@@ -18,7 +22,7 @@
                             <div class="card-body p-5">
                                 <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="pill" href="#nav-tab-card">
+                                        <a class="nav-link fw-bold" data-toggle="pill" href="#nav-tab-card">
                                             <i class="fa-solid fa-credit-card"></i> Credit Card</a>
                                     </li>
                                 </ul>
@@ -83,7 +87,7 @@
                                                 </div>
                                             </div>
                                             <div class="d-grid gap-2 mx-auto col-12">
-                                                <button class="subscribe btn btn-primary btn-lg" type="submit"> Confirm </button>
+                                                <button class="subscribe btn btn-primary btn-lg" type="submit"> Pay Now </button>
                                             </div>
                                         </form>
                                     </div>

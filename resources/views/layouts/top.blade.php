@@ -38,18 +38,22 @@
                         <div class="fw-semibold">Account</div>
                     </div>
 
-                    <a class="dropdown-item" href="{{route('add.funds')}}">
-                        <svg class="icon me-2">
-                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-wallet')}}"></use>
-                        </svg> Add fund</a><a class="dropdown-item" href="{{route('my.orders')}}">
-                        <svg class="icon me-2">
-                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-basket')}}"></use>
-                        </svg> My orders</a>
-                    <a class="dropdown-item" href="{{route('services')}}">
-                        <svg class="icon me-2">
-                            <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-gem')}}"></use>
-                        </svg> Services</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="{{route('auth.logout')}}">
+                    @if(auth()->user()->user_type === 'user')
+                            <a class="dropdown-item" href="{{route('add.funds')}}">
+                                <svg class="icon me-2">
+                                    <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-wallet')}}"></use>
+                                </svg> Add fund</a><a class="dropdown-item" href="{{route('my.orders')}}">
+                                <svg class="icon me-2">
+                                    <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-basket')}}"></use>
+                                </svg> My orders</a>
+                            <a class="dropdown-item" href="{{route('services')}}">
+                                <svg class="icon me-2">
+                                    <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-gem')}}"></use>
+                                </svg> Services</a>
+
+                            <div class="dropdown-divider"></div>
+                            @endif
+                    <a class="dropdown-item" href="{{route('auth.logout')}}">
                         <svg class="icon me-2">
                             <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-account-logout')}}"></use>
                         </svg> Logout</a>

@@ -7,8 +7,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-6">
-                    <h2 class="fs-2 fw-bold">View Ticket ({{$data[0]->ticket->ticket_no}})</h2>
+                    <h2 class="fs-2 fw-bold">Admin View Ticket ({{$data[0]->ticket->ticket_no}})</h2>
                     <hr />
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6">
+                    <form action="{{route('admin.ticket.status.change')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="ticket_id" value="{{$data[0]->ticket->id}}">
+                        <div class="row">
+                            <div class="col-8">
+                                <select {{$data[0]->ticket->status === 1 ? 'disabled' : ''}} class="form-control" name="status">
+                                    <option value="">Change Status</option>
+                                    <option {{$data[0]->ticket->status === 1 ? 'selected' : ''}} value="1">Completed</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" {{$data[0]->ticket->status === 1 ? 'disabled' : ''}} class="btn btn-dark">Update</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <main>
@@ -38,7 +57,7 @@
                                                 <p class="alert alert-{{$status}}">{{ Session::get($status) }}</p>
                                             @endif
                                         @endforeach
-                                        <form role="form" method="POST" id="paymentForm" action="{{route('add.ticket.reply')}}">
+                                        <form role="form" method="POST" id="paymentForm" action="{{route('admin.reply')}}">
                                             @csrf
 
                                             <input type="hidden" name="ticket_id" value="{{$tid}}">

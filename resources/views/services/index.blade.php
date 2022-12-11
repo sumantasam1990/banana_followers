@@ -82,7 +82,9 @@
                                                 <th>Rate per 1000</th>
                                                 <th>Min order</th>
                                                 <th>Max order</th>
+                                                @if(auth()->user()->user_type === 'user')
                                                 <th>Action</th>
+                                                @endif
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -93,7 +95,11 @@
                                                     <td>{{$service['cost'] * 3.5}}</td>
                                                     <td><span class="badge bg-danger">{{$service['min_order']}}</span></td>
                                                     <td><span class="badge bg-success">{{$service['max_order']}}</span></td>
-                                                    <td><a class="btn btn-primary btn-sm" href="{{route('new.order', [$service['_id']])}}"><i class="fa-solid fa-fire"></i> New Order</a> </td>
+                                                    @if(auth()->user()->user_type === 'user')
+                                                    <td>
+                                                        <a class="btn btn-primary btn-sm" href="{{route('new.order', [$service['_id']])}}"><i class="fa-solid fa-fire"></i> New Order</a>
+                                                    </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                             </tbody>

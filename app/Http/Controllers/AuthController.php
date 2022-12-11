@@ -55,6 +55,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, true)) {
             $request->session()->regenerate();
+            if (Auth::user()->user_type === 'admin') {
+                return redirect()->intended('u/services');
+            }
             return redirect()->intended('u/add/funds');
         }
 

@@ -1,7 +1,10 @@
 <?php
 
 use App\Models\Order;
+use App\Models\Support;
+use App\Models\Ticket;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -37,9 +40,9 @@ Route::middleware(['auth'])->prefix('u')->group(function () {
 Route::middleware(['auth'])->prefix('admin')->group(function () {
 
     Route::get('subscribers', function () {
-        $data = User::with('fund')->paginate(20);
+        $data = User::with('fund')->where('user_type', '<>', 'admin')->paginate(20);
         return view('admin.subscribers', ['data' => $data, 'balance' => 0.0]);
-    });
+    })->name('admin.subscribers');
 
     Route::get('subscribers/orders/{id}', function (string $id) {
         $data = Order::with('user.fund')->where('user_id', $id)->paginate(2);
@@ -57,6 +60,41 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
         return view('orders.order-status', ['order' => $order, 'data' => $response->json(), 'balance' => 0.0]);
     })->name('admin.order.status');
+
+    Route::get('tickets', function () {
+        $data = Ticket::orderBy('id', 'asc')->paginate(10);
+
+        return view('admin.tickets', ['data' => $data, 'balance' => 0.0]);
+    })->name('admin.tickets');
+
+    Route::get('view/tickets/{id}', function (string $id) {
+        $data = Support::with('ticket', 'user')->where('ticket_id', $id)->get();
+        return view('admin.view-ticket', ['tid' => $id, 'data' => $data, 'balance' => 0.0]);
+    })->name('admin.view.ticket');
+
+    Route::post('reply/support', function (\Illuminate\Http\Request $request) {
+
+        $request->validate([
+            'msg' => 'required|max:500',
+            'ticket_id' => 'required|exists:supports,ticket_id'
+        ]);
+
+        $support = new Support;
+
+        $support->ticket_id = $request->ticket_id;
+        $support->message = $request->msg;
+        $support->user_id = Auth::user()->id;
+        $support->save();
+
+        return redirect()->back();
+
+    })->name('admin.reply');
+
+    Route::post('status/change', function (\Illuminate\Http\Request $request) {
+        Ticket::where('id', $request->ticket_id)->update(['status' => $request->status]);
+
+        return redirect(\route('admin.tickets'))->with('msg', 'Status changed to completed.');
+    })->name('admin.ticket.status.change');
 
 });
 

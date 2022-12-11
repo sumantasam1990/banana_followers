@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('supports', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->ulid('ticket_id')->index();
+            $table->ulid('user_id')->index();
             $table->text('message');
             $table->timestamps();
         });

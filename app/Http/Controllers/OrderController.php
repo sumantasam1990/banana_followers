@@ -6,6 +6,7 @@ use App\Interfaces\PaymentRepositoryInterface;
 use App\Models\Fund;
 use App\Models\Order;
 use App\Models\Service;
+use App\Services\GiftOffers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -19,19 +20,21 @@ class OrderController extends Controller
         $this->paymentRepository = $paymentRepository;
     }
 
-    public function newOrder(int $id = 0)
+    public function newOrder(int $id = 0, GiftOffers $giftOffers)
     {
         $response = Service::all();
 
         if ($id > 0) {
             $idRate = $response->collect()->firstWhere('_id', '=', $id);
             $idRate = $idRate['cost'] * 3.5;
+            //checking Gift offers
+            $idRate = $giftOffers->offerApplicable($idRate);
         }
 
         return view('orders.new-order', ['id' => $id, 'idRate' => $idRate ?? '', 'data' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
     }
 
-    public function newOrderPost(Request $request)
+    public function newOrderPost(Request $request, GiftOffers $giftOffers)
     {
         $request->validate([
             'service' => 'required',
@@ -42,6 +45,9 @@ class OrderController extends Controller
         try {
             $service = explode('-', $request->service);
             $cost = ($service[1] * 3.5) / 1000 * $request->quantity;
+
+            //checking Gift offers
+            $cost = $giftOffers->offerApplicable($cost);
 
             $balance = $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id);
             $balance = $balance == null ? 0 : $balance;
@@ -87,10 +93,12 @@ class OrderController extends Controller
         }
     }
 
-    public function serviceCost($rate): \Illuminate\Http\JsonResponse
+    public function serviceCost($rate, GiftOffers $giftOffers): \Illuminate\Http\JsonResponse
     {
         $rate = explode('-', $rate);
-        return response()->json(['rate' => number_format($rate[1]*3.5, 2)]);
+        //checking Gift offers
+        $rate = $giftOffers->offerApplicable($rate[1]);
+        return response()->json(['rate' => $rate*3.5]);
     }
 
     public function yourOrders()

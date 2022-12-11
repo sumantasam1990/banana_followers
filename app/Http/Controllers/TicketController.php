@@ -44,6 +44,7 @@ class TicketController extends Controller
 
         $support->ticket_id = $ticket->id;
         $support->message = $request->msg;
+        $support->user_id = Auth::user()->id;
         $support->save();
 
         return redirect()->back()->with('msg', 'Successful! Your ticket no is ' . $ticket_no);
@@ -66,6 +67,7 @@ class TicketController extends Controller
 
         $support->ticket_id = $request->ticket_id;
         $support->message = $request->msg;
+        $support->user_id = Auth::user()->id;
         $support->save();
 
         return redirect()->back();
