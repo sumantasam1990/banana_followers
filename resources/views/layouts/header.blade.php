@@ -41,6 +41,15 @@
     <link href="{{asset('vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet">
 
     @vite(['resources/js/app.js'])
+
+    <style>
+        .p-5 {
+            padding: 10px !important;
+        }
+        .row > * {
+            padding: 10px !important;
+        }
+    </style>
 </head>
 <body>
 

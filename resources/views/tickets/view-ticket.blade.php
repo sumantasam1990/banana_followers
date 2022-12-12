@@ -14,7 +14,7 @@
             <main>
                 @include('layouts.alert')
                 <div class="row">
-                    <aside class="col-sm-8">
+                    <aside class="col-md-8">
                         <article class="card">
                             <div class="card-body p-5">
 

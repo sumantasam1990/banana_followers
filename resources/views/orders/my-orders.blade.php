@@ -22,34 +22,37 @@
                                     <div class="tab-pane fade show active" id="nav-tab-card">
 
                                         @if($data->count() > 0)
-                                        <table class="table table-bordered table-striped mt-4">
-                                            <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Order URL</th>
-                                                <th>Order Quantity</th>
-                                                <th>Order Cost</th>
-                                                <th>Order date</th>
-                                                <th>Order status</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($data as $d)
-                                                <tr>
-                                                    <td class="fw-bold">{{$d->order_API_id}}</td>
-                                                    <td>
-                                                        <a class="text-decoration-none text-dark fw-bold" href="{{$d->url}}" target="_blank">{{$d->url}}</a>
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge bg-danger">{{$d->quantity}}</span>
-                                                    </td>
-                                                    <td>${{number_format($d->cost, 2)}}</td>
-                                                    <td>{{$d->created_at->diffForHumans()}}</td>
-                                                    <td><a class="btn btn-primary btn-sm" href="{{route('order.status', [$d['order_API_id']])}}"><i class="fa-solid fa-fire"></i> Order Status</a> </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped mt-4">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Order URL</th>
+                                                        <th>Order Quantity</th>
+                                                        <th>Order Cost</th>
+                                                        <th>Order date</th>
+                                                        <th>Order status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($data as $d)
+                                                        <tr>
+                                                            <td class="fw-bold">{{$d->order_API_id}}</td>
+                                                            <td>
+                                                                <a class="text-decoration-none text-dark fw-bold" href="{{$d->url}}" target="_blank">{{$d->url}}</a>
+                                                            </td>
+                                                            <td>
+                                                                <span class="badge bg-danger">{{$d->quantity}}</span>
+                                                            </td>
+                                                            <td>${{number_format($d->cost, 2)}}</td>
+                                                            <td>{{$d->created_at->diffForHumans()}}</td>
+                                                            <td><a class="btn btn-primary btn-sm" href="{{route('order.status', [$d['order_API_id']])}}"><i class="fa-solid fa-fire"></i> Order Status</a> </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                         @else
                                             <p class="fw-bold fs-6">No data.</p>
                                         @endif

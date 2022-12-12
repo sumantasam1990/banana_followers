@@ -14,7 +14,7 @@
             <main>
                 @include('layouts.alert')
                 <div class="row">
-                    <aside class="col-sm-8">
+                    <aside class="col-md-8">
                         <article class="card">
                             <div class="card-body p-5">
 
@@ -22,8 +22,8 @@
                                     <div class="tab-pane fade show active" id="nav-tab-card">
 
                                         <div class="mb-4">
-                                            <a class="btn btn-primary" href="{{route('add.funds')}}"><i class="fa-solid fa-sack-dollar"></i> Add funds</a>
-                                            <a class="btn btn-dark" href="{{route('services')}}"><i class="fa-solid fa-cart-shopping"></i> Place a order</a>
+                                            <a class="btn btn-primary mt-2" href="{{route('add.funds')}}"><i class="fa-solid fa-sack-dollar"></i> Add funds</a>
+                                            <a class="btn btn-dark mt-2" href="{{route('services')}}"><i class="fa-solid fa-cart-shopping"></i> Place a order</a>
                                         </div>
 
                                         <ul class="list-group fs-5">
