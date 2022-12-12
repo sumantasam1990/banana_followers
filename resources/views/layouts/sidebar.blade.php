@@ -4,7 +4,7 @@
             @if(auth()->user()->user_type === 'admin')
                 Admin Panel
             @else
-                Banana Followers
+                Paying To Grow
             @endif
         </h1>
         <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">

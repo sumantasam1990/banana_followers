@@ -22,30 +22,33 @@
                                     <div class="tab-pane fade show active" id="nav-tab-card">
 
                                         @if($data->count() > 0)
-                                            <table class="table table-bordered table-striped mt-4">
-                                                <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>User Full Name</th>
-                                                    <th>User Email</th>
-                                                    <th>User Registered At</th>
-                                                    <th>Balance</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                @foreach($data as $d)
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped mt-4">
+                                                    <thead>
                                                     <tr>
-                                                        <td class="fw-bold">{{$d->id}}</td>
-                                                        <td>{{$d->name}}</td>
-                                                        <td>{{$d->email}}</td>
-                                                        <td>{{$d->created_at->diffForHumans()}}</td>
-                                                        <td class="fw-bold">${{$d->fund->balance}}</td>
-                                                        <td><a class="btn btn-primary btn-sm" href="{{route('subs.orders', [$d->id])}}"><i class="fa-solid fa-fire"></i> View orders</a> </td>
+                                                        <th>ID</th>
+                                                        <th>User Full Name</th>
+                                                        <th>User Email</th>
+                                                        <th>User Registered At</th>
+                                                        <th>Balance</th>
+                                                        <th>Action</th>
                                                     </tr>
-                                                @endforeach
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($data as $d)
+                                                        <tr>
+                                                            <td class="fw-bold">{{$d->id}}</td>
+                                                            <td>{{$d->name}}</td>
+                                                            <td>{{$d->email}}</td>
+                                                            <td>{{$d->created_at->diffForHumans()}}</td>
+                                                            <td class="fw-bold">${{$d->fund->balance}}</td>
+                                                            <td><a class="btn btn-primary btn-sm" href="{{route('subs.orders', [$d->id])}}"><i class="fa-solid fa-fire"></i> View orders</a> </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
                                         @else
                                             <p class="fw-bold fs-6">No data.</p>
                                         @endif
