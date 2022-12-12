@@ -30,7 +30,7 @@
         <ul class="header-nav ms-3">
             <li class="nav-item dropdown">
                 <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Welcome to <span class="fw-bold">{{auth()->user()->name}}</span>
+                    <span class="fw-bold">{{auth()->user()->name}}</span>
                     <div class="avatar avatar-md"><img class="avatar-img" src="{{asset('images/user.png')}}" alt="{{auth()->user()->email}}"></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pt-0">
