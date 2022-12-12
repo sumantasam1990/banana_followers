@@ -31,6 +31,7 @@ Route::middleware(['auth'])->prefix('u')->group(function () {
     Route::get('new/order/{id?}', [\App\Http\Controllers\OrderController::class, 'newOrder'])->name('new.order');
     Route::post('new/order/post', [\App\Http\Controllers\OrderController::class, 'newOrderPost'])->name('new.order.post');
     Route::get('service/cost/{rate}', [\App\Http\Controllers\OrderController::class, 'serviceCost']);
+    Route::get('service/cost/quantity/{service}/{quantity}', [\App\Http\Controllers\OrderController::class, 'serviceCostByQuantity']);
     Route::get('services/{search?}/{sub?}', [\App\Http\Controllers\ServiceController::class, 'index'])->name('services');
     Route::post('services/search', [\App\Http\Controllers\ServiceController::class, 'search'])->name('services.search');
     Route::get('my/orders', [\App\Http\Controllers\OrderController::class, 'yourOrders'])->name('my.orders');

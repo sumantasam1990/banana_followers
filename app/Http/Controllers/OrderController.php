@@ -95,10 +95,21 @@ class OrderController extends Controller
 
     public function serviceCost($rate, GiftOffers $giftOffers): \Illuminate\Http\JsonResponse
     {
+        //$cost = ($service[1] * 3.5) / 1000 * $request->quantity;
+
         $rate = explode('-', $rate);
         //checking Gift offers
         $rate = $giftOffers->offerApplicable($rate[1]);
         return response()->json(['rate' => number_format($rate*3.5, 2)]);
+    }
+
+    public function serviceCostByQuantity($service, $quantity, GiftOffers $giftOffers): \Illuminate\Http\JsonResponse
+    {
+        $rate = explode('-', $service);
+        $cost = ($rate[1] * 3.5) / 1000 * $quantity;
+        //checking Gift offers
+        $rate = $giftOffers->offerApplicable($cost);
+        return response()->json(['rate' => number_format($rate, 2), 'main_rate' => number_format($cost, 2)]);
     }
 
     public function yourOrders()

@@ -34,7 +34,7 @@
                                             @csrf
                                             <div class="form-group">
                                                 <label for="username">Service*</label>
-                                                <select class="form-control" name="service" onchange="getServiceCost(this.value);">
+                                                <select class="form-control" id="service" name="service" onchange="getServiceCost(this.value);">
                                                     <option selected>--Choose a service--</option>
                                                     @foreach($data as $d)
                                                         <option {{$d['_id'] == $id ? 'selected' : ''}} value="{{$d['_id']}}-{{$d['cost']}}">{{$d['type']}} - {{$d['title']}}</option>
@@ -49,13 +49,13 @@
 
                                             <div class="form-group">
                                                 <label for="username">Quantity*</label>
-                                                <input type="number" class="form-control" name="quantity" placeholder="Quantity">
+                                                <input onkeyup="getServiceCostQuantity(this.value)" type="number" class="form-control quantity" name="quantity" placeholder="Quantity">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="username">Charge*</label>
                                                 <p class="mb-1 fw-bold text-primary fs-5" id="rate_charge">{{$idRate ? '$' . number_format($idRate, 2) : ''}}</p>
-                                                <del class="fw-bold text-danger"> ${{number_format($prevRate, 2)}}</del>
+                                                <del class="fw-bold text-danger" id="prev_rate_charge"> ${{number_format($prevRate, 2)}}</del>
                                             </div>
 
                                             <div class="d-grid gap-2 mx-auto col-12">
@@ -83,5 +83,14 @@
         fetch('/u/service/cost/' + cost)
             .then((response) => response.json())
             .then((data) => document.getElementById('rate_charge').innerHTML = '$' + data.rate);
+    }
+    function getServiceCostQuantity(quantity) {
+        var service = document.getElementById('service').value;
+        fetch('/u/service/cost/quantity/' + service + '/' + quantity)
+            .then((response) => response.json())
+            .then((data) => {
+                document.getElementById('rate_charge').innerHTML = '$' + data.rate
+                document.getElementById('prev_rate_charge').innerHTML = '$' + data.main_rate
+            });
     }
 </script>
