@@ -45,6 +45,7 @@
                                                 <li><a class="dropdown-item" href="{{route('services', ['instagram', 'likes'])}}">Likes</a></li>
                                                 <li><a class="dropdown-item" href="{{route('services', ['instagram', 'follow'])}}">Followers</a></li>
                                                 <li><a class="dropdown-item" href="{{route('services', ['instagram', 'comment'])}}">Comments</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['instagram', 'igtv'])}}">IGTV</a></li>
                                             </ul>
                                         </div>
 
@@ -85,6 +86,8 @@
                                                 <li><a class="dropdown-item" href="{{route('services', ['tiktok', 'follower'])}}">Followers</a></li>
                                                 <li><a class="dropdown-item" href="{{route('services', ['tiktok', 'comment'])}}">Comments</a></li>
                                                 <li><a class="dropdown-item" href="{{route('services', ['tiktok', 'video'])}}">Videos</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['tiktok', 'video'])}}">Video reproductions</a></li>
+
                                             </ul>
                                         </div>
 
@@ -113,6 +116,8 @@
                                                 <li><a class="dropdown-item" href="{{route('services', ['telegram', 'comment'])}}">Comments</a></li>
                                                 <li><a class="dropdown-item" href="{{route('services', ['telegram', 'post'])}}">Post</a></li>
                                                 <li><a class="dropdown-item" href="{{route('services', ['telegram', 'view'])}}">Views</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['telegram', 'channel'])}}">Channel users</a></li>
+
                                             </ul>
                                         </div>
 
@@ -126,6 +131,8 @@
                                                 <li><a class="dropdown-item" href="{{route('services', ['spotify', 'save'])}}">Saves</a></li>
                                                 <li><a class="dropdown-item" href="{{route('services', ['spotify', 'follower'])}}">Followers</a></li>
                                                 <li><a class="dropdown-item" href="{{route('services', ['spotify', 'playlist'])}}">Playlist</a></li>
+                                                <li><a class="dropdown-item" href="{{route('services', ['spotify', 'listeners'])}}">Monthly Listeners</a></li>
+
                                             </ul>
                                         </div>
 
