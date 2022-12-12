@@ -54,7 +54,7 @@
 
                                             <div class="form-group">
                                                 <label for="username">Charge*</label>
-                                                <p class="mb-1 fw-bold text-primary fs-5">{{$idRate ? '$' . number_format($idRate, 2) : ''}}</p>
+                                                <p class="mb-1 fw-bold text-primary fs-5" id="rate_charge">{{$idRate ? '$' . number_format($idRate, 2) : ''}}</p>
                                                 <del class="fw-bold text-danger"> ${{number_format($prevRate, 2)}}</del>
                                             </div>
 
@@ -82,6 +82,6 @@
     function getServiceCost(cost) {
         fetch('/u/service/cost/' + cost)
             .then((response) => response.json())
-            .then((data) => document.getElementById('rate_charge').value = '$' + data.rate);
+            .then((data) => document.getElementById('rate_charge').innerHTML = '$' + data.rate);
     }
 </script>

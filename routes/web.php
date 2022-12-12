@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 // Auth routes
-Route::get('/', [\App\Http\Controllers\AuthController::class, 'register'])->name('auth.register');
 Route::get('/auth/register', [\App\Http\Controllers\AuthController::class, 'register'])->name('auth.register');
 Route::post('/auth/register/post', [\App\Http\Controllers\AuthController::class, 'registerPost'])->name('auth.register.post');
 Route::get('/auth/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
@@ -19,6 +18,7 @@ Route::get('/auth/logout', [\App\Http\Controllers\AuthController::class, 'logout
 
 // General routes
 Route::middleware(['auth'])->prefix('u')->group(function () {
+    Route::get('/', [\App\Http\Controllers\AuthController::class, 'register'])->name('auth.register');
     Route::get('/', [\App\Http\Controllers\UserController::class, 'dashboard']);
     Route::get('add/funds', [\App\Http\Controllers\PaymentController::class, 'addFunds'])->name('add.funds');
     Route::post('add/funds/payment', [\App\Http\Controllers\PaymentController::class, 'payment'])->name('add.fund.payment');
@@ -34,6 +34,7 @@ Route::middleware(['auth'])->prefix('u')->group(function () {
     Route::post('ticket/post', [\App\Http\Controllers\TicketController::class, 'addTicket'])->name('add.ticket.post');
     Route::get('view/ticket/{id}', [\App\Http\Controllers\TicketController::class, 'viewTicket'])->name('view.ticket');
     Route::post('ticket/reply', [\App\Http\Controllers\TicketController::class, 'replyTicket'])->name('add.ticket.reply');
+    Route::get('gifts', [\App\Http\Controllers\GiftsController::class, 'index'])->name('gifts');
 });
 
 

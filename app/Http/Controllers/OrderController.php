@@ -31,7 +31,7 @@ class OrderController extends Controller
             $idRate = $giftOffers->offerApplicable($prevRate);
         }
 
-        return view('orders.new-order', ['id' => $id, 'idRate' => $idRate ?? '', 'prevRate' => $prevRate ?? '', 'data' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
+        return view('orders.new-order', ['id' => $id, 'idRate' => $idRate ?? '', 'prevRate' => $prevRate ?? 0.0, 'data' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id)]);
     }
 
     public function newOrderPost(Request $request, GiftOffers $giftOffers)
