@@ -14,6 +14,7 @@ Route::get('/', function () {
         return redirect(\route('services'));
     }
 })->name('auth.register');
+
 Route::get('/auth/register', [\App\Http\Controllers\AuthController::class, 'register'])->name('auth.register');
 Route::post('/auth/register/post', [\App\Http\Controllers\AuthController::class, 'registerPost'])->name('auth.register.post');
 Route::get('/auth/login', [\App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
@@ -45,6 +46,8 @@ Route::middleware(['auth'])->prefix('u')->group(function () {
 
 // Admin routes
 Route::middleware(['auth'])->prefix('admin')->group(function () {
+
+    Route::get('delete/service/{id}', [\App\Http\Controllers\ServiceController::class, 'deleteService'])->name('admin.service.delete');
 
     Route::get('subscribers', function () {
         $data = User::with('fund')->where('user_type', '<>', 'admin')->paginate(20);

@@ -31,4 +31,14 @@ class ServiceController extends Controller
 
         return view('services.index', ['services' => $response, 'balance' => $this->paymentRepository->getPaymentBalanceByUserId(Auth::user()->id), 'request' => $request]);
     }
+
+    public function deleteService(string $id)
+    {
+        try {
+            Service::where('id', $id)->delete();
+            return redirect()->back()->with('msg', 'Service successfully deleted.');
+        } catch (\Throwable $th) {
+            return abort('500', 'Error! Something is wrong please contact to developer.');
+        }
+    }
 }

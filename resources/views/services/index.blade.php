@@ -169,6 +169,10 @@
                                                             <td>
                                                                 <a class="btn btn-primary btn-sm" href="{{route('new.order', [$service['_id']])}}"><i class="fa-solid fa-fire"></i> New Order</a>
                                                             </td>
+                                                        @else
+                                                            <td>
+                                                                <a class="btn btn-outline-danger btn-sm" onclick="return confirm('are you sure?')" href="{{route('admin.service.delete', [$service['id']])}}"><i class="fa-solid fa-trash"></i> </a>
+                                                            </td>
                                                         @endif
                                                     </tr>
                                                 @endforeach
