@@ -20,7 +20,7 @@ class OrderController extends Controller
         $this->paymentRepository = $paymentRepository;
     }
 
-    public function newOrder(int $id = 0, GiftOffers $giftOffers)
+    public function newOrder(GiftOffers $giftOffers, int $id = 0)
     {
         $response = Service::all();
 

@@ -18,7 +18,7 @@ class ServiceController extends Controller
         $this->paymentRepository = $paymentRepository;
     }
 
-    public function index(string $search = '', string $sub = '', GiftOffers $giftOffers)
+    public function index(string $search = '', string $sub = '')
     {
         $response = Service::where('category', 'like', '%' . $search . '%')->where('title', 'like', '%' . $sub . '%')->paginate(50);
 
