@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->ulid('user_id');
+            $table->id();
+            $table->integer('user_id');
             $table->double('order_API_id')->index();
             $table->string('url');
             $table->integer('quantity');

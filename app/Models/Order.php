@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory;
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

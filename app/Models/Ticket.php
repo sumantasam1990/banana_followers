@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory;
 
     public function supports(): \Illuminate\Database\Eloquent\Relations\HasMany
     {

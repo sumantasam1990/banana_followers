@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->ulid('user_id')->index();
+            $table->id();
+            $table->integer('user_id')->index();
             $table->string('transaction_id', 255)->index();
             $table->string('receipt_url', 255);
             $table->double('amount_paid')->index();

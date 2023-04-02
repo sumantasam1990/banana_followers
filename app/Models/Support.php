@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Support extends Model
 {
-    use HasFactory, HasUlids;
+    use HasFactory;
 
     public function ticket(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

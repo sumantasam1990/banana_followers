@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('funds', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->ulid('user_id');
+            $table->id();
+            $table->integer('user_id');
             $table->double('balance')->index();
             $table->timestamps();
         });

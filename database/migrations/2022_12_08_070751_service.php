@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->ulid('_id')->unique();
+            $table->id();
+            $table->integer('_id')->unique();
             $table->string('title')->index();
             $table->double('cost');
             $table->integer('min_order');

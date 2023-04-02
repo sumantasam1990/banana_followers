@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('supports', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->ulid('ticket_id')->index();
-            $table->ulid('user_id')->index();
+            $table->id();
+            $table->integer('ticket_id')->index();
+            $table->integer('user_id')->index();
             $table->text('message');
             $table->timestamps();
         });
